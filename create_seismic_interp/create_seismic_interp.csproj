@@ -1,0 +1,111 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemDefinitionGroup>
+    <Reference>
+      <Private>False</Private>
+    </Reference>
+  </ItemDefinitionGroup>
+  <PropertyGroup>
+    <!--ProjectType:Plugin-->
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{BCFD5960-541A-4721-B12E-E8502E99ED6A}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>create_seismic_interp</RootNamespace>
+    <AssemblyName>create_seismic_interp</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Slb.Ocean.Data, Version=1.0.0.0, Culture=neutral, PublicKeyToken=14ef4a483ef6a64b, processorArchitecture=MSIL" />
+    <Reference Include="Slb.Ocean.Petrel.Configuration, Version=18.1.0.0, Culture=neutral, PublicKeyToken=d42cec326f61051f, processorArchitecture=MSIL" />
+    <Reference Include="Slb.Ocean.Petrel.Seismic, Version=18.1.0.0, Culture=neutral, PublicKeyToken=14ef4a483ef6a64b, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\Schlumberger\Petrel 2018\Public\Slb.Ocean.Petrel.Seismic.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="Slb.Ocean.Core">
+      <Name>Slb.Ocean.Core</Name>
+      <HintPath>C:\Program Files\Schlumberger\Petrel 2018\Public\slb.ocean.core.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Slb.Ocean.Petrel">
+      <Name>Slb.Ocean.Petrel</Name>
+      <HintPath>C:\Program Files\Schlumberger\Petrel 2018\Public\slb.ocean.petrel.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Slb.Ocean.Basics">
+      <Name>Slb.Ocean.Basics</Name>
+      <HintPath>C:\Program Files\Schlumberger\Petrel 2018\Public\Slb.Ocean.Basics.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Slb.Ocean.Geometry">
+      <Name>Slb.Ocean.Geometry</Name>
+      <HintPath>C:\Program Files\Schlumberger\Petrel 2018\Public\Slb.Ocean.Geometry.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Module.cs" />
+    <Compile Include="Plugin.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Workstep.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 2.0 %28x86%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>del "$(ProjectDir)\plugin.xml"
+"%25Ocean2018Home%25\PluginPackager.exe" /g "$(TargetPath)" "$(ProjectDir)\plugin.xml" "%25OCEAN2018HOME_x64%25\petrel.exe"
+"%25Ocean2018Home%25\PluginPackager.exe" /m "$(ProjectDir)\plugin.xml" "%25OCEAN2018HOME_x64%25\petrel.exe" "$(TargetDir)"
+</PostBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+		Other similar extension points exist, see Microsoft.Common.targets.
+	<Target Name="BeforeBuild">
+	</Target>
+	<Target Name="AfterBuild">
+	</Target>
+	-->
+</Project>

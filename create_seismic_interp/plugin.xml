@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<InstalledPlugins xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Plugin>
+    <Name>Plugin</Name>
+    <Contact>contact@company.info</Contact>
+    <PluginTypeName>create_seismic_interp.Plugin, create_seismic_interp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</PluginTypeName>
+    <PluginUri>http://www.pluginuri.info/</PluginUri>
+    <PluginId>://create_seismic_interp.Plugin/1.0.0.0</PluginId>
+    <Trust PublicKeyToken="">Default</Trust>
+    <ReleaseDate>2020-06-30</ReleaseDate>
+    <Author>WGaige</Author>
+    <AppVersion>2018.1</AppVersion>
+    <Modules>
+      <Module TypeName="create_seismic_interp.Module, create_seismic_interp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" />
+    </Modules>
+    <Assemblies>
+      <Assembly Name="create_seismic_interp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" />
+    </Assemblies>
+    <assemblyBinding />
+    <StartMode>Startup</StartMode>
+    <StartupAction>None</StartupAction>
+  </Plugin>
+</InstalledPlugins>
